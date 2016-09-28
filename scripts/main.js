@@ -92,10 +92,10 @@ function countWords(theString) {
 
     function addItemsToMapObject() {
         for (var item1 in arr2) {
-            var word = arr2[item1];
+            var word = arr2[item1]; //word is set to the item at index item1
             /* if the map contains the key word, retrieve the property and add one. */
-            if (map[word]) {
-                var count = map[word];
+            if (map[word]) { //tests if the item at index item1 exists as a key in the map object
+                var count = map[word]; //if it exists, save that value in count.
                 count++;
                 map[word] = count;
                 /* if the map doesn't contain the word, then set the value of map.word to 1 and add map.word to map */
