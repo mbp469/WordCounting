@@ -56,6 +56,7 @@ by William Shakespeare
     But if thou live remembered not to be,
     Die single and thine image dies with thee.`;
 
+var shortString = ' !axe axe button car, dash';
 
 /* this function takes a string and returns an object containing words as the keys and counts of that word as values. */
 function countWords(theString) {
@@ -66,8 +67,10 @@ function countWords(theString) {
     var contentArea = document.getElementById('content');
     var wordDiv = document.createElement('div');
     var countDiv = document.createElement('div');
+    var maxArea =   contentArea.appendChild(document.createElement('h2'));
     contentArea.appendChild(wordDiv);
     contentArea.appendChild(countDiv);
+
     // var wordP = document.createElement('p');
     // var countP = document.createElement('p');
     // wordP.className = "words-class";
@@ -79,7 +82,7 @@ function countWords(theString) {
         /* go through the array and for each item, test for character-length, revert to lower case, remove punctuation using:[replace(/[.,\/#!$%\^&\*;:{}=\-_`~();:]/g,"")], add acceptable array items to new array */
         for (var item in arr1) {
             //character.replace punctuation with "" and changes to lower case
-            arr1[item] = arr1[item].replace(/[!.,?'"-]/g, "").toLowerCase();
+            arr1[item] = arr1[item].replace(/[!.,?'"-:;]/g, "").toLowerCase();
             /* push the item to arr2 if more than one character long */
             if (arr1[item].length > 1) {
                 arr2.push(arr1[item]); // the cleaned up items are now stored in arr2.
@@ -99,18 +102,38 @@ function countWords(theString) {
             } else {
                 map[word] = 1;
             }
-            var wordP = document.createElement('p');
-            wordP.className='words';
-            wordDiv.appendChild(wordP);
-            wordP.innerHTML = word;
-            var countP = document.createElement('p');
-            countP.className='counts';
-            countDiv.appendChild(countP);
-            countP.innerHTML = map[word];
-            console.log (word + ": " + map[word]);
         }
+        for(var prop in map) { /* iterate again for the actual printing out. */
+        var wordP = document.createElement('p');
+        wordP.className = 'words';
+        wordDiv.appendChild(wordP);
+        wordP.innerHTML = prop;
+        var countP = document.createElement('p');
+        countP.className = 'counts';
+        countDiv.appendChild(countP);
+        countP.innerHTML = map[prop];
+        console.log(prop + ": " + map[prop]);
+      }
+      mostUsedWord();
+    }
+
+    function mostUsedWord() {
+        var maxValue = 0;
+        var maxKey;
+        for (var key in map) {
+          var value = parseInt(map[key]);
+            if (value > maxValue) {
+                maxKey = key;
+                maxValue = value;
+            }
+        }
+        maxArea.innerHTML = "'" + maxKey + "' is the most-used word. It is repeated " + maxValue + " times.";
+        console.log("maxKey = " + maxKey + ": " + maxValue);
+        return key;
     }
     cleanUp();
     addItemsToMapObject();
+
 } //end of countWords function
 countWords(testString);
+// countWords(shortString);

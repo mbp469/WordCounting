@@ -8,10 +8,13 @@ header {
   display: inline-block;
   text-decoration: underline;
   font-style: italic;
-  padding: 0% 2%; }
+  padding: 0 2%; }
 
 #content {
   width: 100%; }
+  #content h2 {
+    text-align: center;
+    margin-bottom: 3%; }
   #content div {
     float: left;
     width: 50%;
