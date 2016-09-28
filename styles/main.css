@@ -1,0 +1,26 @@
+header {
+  width: 100%;
+  font-size: 2em;
+  text-align: center;
+  line-height: 3em; }
+
+.columnTitle {
+  display: inline-block;
+  text-decoration: underline;
+  font-style: italic;
+  padding: 0% 2%; }
+
+#content {
+  width: 100%; }
+  #content div {
+    float: left;
+    width: 50%;
+    margin: 0 auto;
+    text-align: center; }
+
+.counts,
+.words {
+  margin-top: 4%;
+  text-align: center; }
+
+/*# sourceMappingURL=main.css.map */

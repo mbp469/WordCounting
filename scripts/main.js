@@ -59,38 +59,56 @@ by William Shakespeare
 
 /* this function takes a string and returns an object containing words as the keys and counts of that word as values. */
 function countWords(theString) {
-  var arr1 = []; //theString will be broken down and placed here.
-  var arr2 = []; //this is where to put processed array of strings.
-  var map = {}; //the object that will hold the words and their counts.
-var contentArea = document.getElementById('content');
-    function cleanUp(){
-      /* iterate through string and build an array of words by replacing newlines with spaces, then splitting by spaces. */
-      arr1 = theString.replace(/\n/g, " ").split(" ");
-      /* go through the array and for each item, test for character-length, revert to lower case, remove punctuation using:[replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")], add acceptable array items to new array */
-      for (var item in arr1) {
-          //character.replace punctuation with "" and changes to lower case
-          arr1[item] = arr1[item].replace(/[!.,?'"-]/g,"").toLowerCase();
-          /* push the item to arr2 if more than one character long */
-          if(arr1[item].length > 1) {
-          arr2.push(arr1[item]); // the cleaned up items are now stored in arr2.
+    var arr1 = []; //theString will be broken down and placed here.
+    var arr2 = []; //this is where to put processed array of strings.
+    var map = { //the object that will hold the words and their counts.
+    };
+    var contentArea = document.getElementById('content');
+    var wordDiv = document.createElement('div');
+    var countDiv = document.createElement('div');
+    contentArea.appendChild(wordDiv);
+    contentArea.appendChild(countDiv);
+    // var wordP = document.createElement('p');
+    // var countP = document.createElement('p');
+    // wordP.className = "words-class";
+    // countP.className = "counts-class";
+
+    function cleanUp() {
+        /* iterate through string and build an array of words by replacing newlines with spaces, then splitting by spaces. */
+        arr1 = theString.replace(/\n/g, " ").split(" ");
+        /* go through the array and for each item, test for character-length, revert to lower case, remove punctuation using:[replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")], add acceptable array items to new array */
+        for (var item in arr1) {
+            //character.replace punctuation with "" and changes to lower case
+            arr1[item] = arr1[item].replace(/[!.,?'"-]/g, "").toLowerCase();
+            /* push the item to arr2 if more than one character long */
+            if (arr1[item].length > 1) {
+                arr2.push(arr1[item]); // the cleaned up items are now stored in arr2.
+            }
         }
-      }
     }
+
     function addItemsToMapObject() {
-      for (var item1 in arr2) {
-        var word = arr2[item1];
-        /* if the map contains the key word, retrieve the property and add one. */
-        if(map[word]) {
-          var count = map[word];
-          count++;
-          map[word] = count;
-          /* if the map doesn't contain the word, then set the value of map.word to 1 and add map.word to map */
-        } else {
-          map[word] = 1;
+        for (var item1 in arr2) {
+            var word = arr2[item1];
+            /* if the map contains the key word, retrieve the property and add one. */
+            if (map[word]) {
+                var count = map[word];
+                count++;
+                map[word] = count;
+                /* if the map doesn't contain the word, then set the value of map.word to 1 and add map.word to map */
+            } else {
+                map[word] = 1;
+            }
+            var wordP = document.createElement('p');
+            wordP.className='words';
+            wordDiv.appendChild(wordP);
+            wordP.innerHTML = word;
+            var countP = document.createElement('p');
+            countP.className='counts';
+            countDiv.appendChild(countP);
+            countP.innerHTML = map[word];
+            console.log (word + ": " + map[word]);
         }
-        contentArea.innerHTML += word + ": " + map[word] + "<br>";
-        console.log("word: map[word] = " + word + ": " + map[word]);
-      }
     }
     cleanUp();
     addItemsToMapObject();
