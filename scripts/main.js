@@ -76,7 +76,7 @@ function countWords(theString) {
     function cleanUp() {
         /* iterate through string and build an array of words by replacing newlines with spaces, then splitting by spaces. */
         arr1 = theString.replace(/\n/g, " ").split(" ");
-        /* go through the array and for each item, test for character-length, revert to lower case, remove punctuation using:[replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g,"")], add acceptable array items to new array */
+        /* go through the array and for each item, test for character-length, revert to lower case, remove punctuation using:[replace(/[.,\/#!$%\^&\*;:{}=\-_`~();:]/g,"")], add acceptable array items to new array */
         for (var item in arr1) {
             //character.replace punctuation with "" and changes to lower case
             arr1[item] = arr1[item].replace(/[!.,?'"-]/g, "").toLowerCase();
